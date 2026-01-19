@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ashlyns BUSINESS — Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="global-nav.css">
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <main class="gallery-main" aria-labelledby="gallery-title">
+    <h1 id="gallery-title">Ashlyns BUSINESS — Photo Gallery</h1>
+    <p class="lead">A professional visual overview. Click any image to enlarge.</p>
+
+    <section class="gallery-grid" aria-live="polite">
+      <button class="gallery-item" data-src="images/collage.png" aria-label="Open collage">
+        <img src="images/collage.png" alt="Collage" loading="lazy">
+      </button>
+      <button class="gallery-item" data-src="images/ashlyn.png" aria-label="Open portrait">
+        <img src="images/ashlyn.png" alt="Portrait" loading="lazy">
+      </button>
+      <button class="gallery-item" data-src="images/1.png" aria-label="Open sample image">
+        <img src="images/1.png" alt="Sample image" loading="lazy">
+      </button>
+      <button class="gallery-item" data-src="images/ashlyn.png" aria-label="Open portrait">
+        <img src="images/75.png" alt="Portrait" loading="lazy">
+    </section>
+
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+      <button class="lb-close" aria-label="Close preview">✕</button>
+      <button class="lb-prev" aria-label="Previous image">◀</button>
+      <button class="lb-next" aria-label="Next image">▶</button>
+      <img class="lb-img" src="" alt="">
+      <div class="lb-caption" aria-hidden="false"></div>
+    </div>
+  </main>
+
+  <script src="global-nav.js" defer></script>
+  <script src="gallery.js" defer></script>
+</body>
+</html>

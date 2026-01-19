@@ -240,6 +240,7 @@
         initParallax();
         initServiceItems();
         initPortfolioItems();
+            initHeroVideo();
     });
 
     // Re-run animations on page load to ensure visibility
@@ -250,5 +251,70 @@
             initScrollAnimations();
         }, 100);
     });
+
+    // ============================================
+    // HERO IMAGE -> IN-FRAME VIDEO
+    // ============================================
+    function initHeroVideo(){
+        const wrapper = document.querySelector('.hero-image-wrapper');
+        if (!wrapper) return;
+        const img = wrapper.querySelector('.hero-image');
+        if (!img) return;
+
+        let activeVideo = null;
+
+        wrapper.addEventListener('click', (e) => {
+            // prevent multiple activations
+            if (wrapper.classList.contains('playing')) return;
+
+            // create video element
+            const video = document.createElement('video');
+            video.className = 'hero-video';
+            // try a common path first, then fallback to root
+            video.src = 'videos/in.mp4';
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            video.autoplay = true;
+            video.controls = true;
+            // user clicked — allow sound
+            video.muted = false;
+
+            // append and show
+            wrapper.appendChild(video);
+            // small delay to allow element insertion before transition
+            requestAnimationFrame(() => {
+                wrapper.classList.add('playing');
+                video.classList.add('show');
+                // attempt to play; ignore promise rejection
+                video.play().catch(() => {});
+            });
+
+            // fall back to root path if load fails
+            video.addEventListener('error', () => {
+                if (video.src.endsWith('videos/in.mp4')){
+                    video.src = 'in.mp4';
+                    video.load();
+                    video.play().catch(()=>{});
+                }
+            });
+
+            // click toggles play/pause
+            video.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                if (video.paused) video.play(); else video.pause();
+            });
+
+            // cleanup after end
+            const cleanup = () => {
+                video.classList.remove('show');
+                wrapper.classList.remove('playing');
+                setTimeout(() => { if (video.parentNode) video.parentNode.removeChild(video); }, 500);
+                activeVideo = null;
+            };
+
+            video.addEventListener('ended', cleanup);
+            activeVideo = video;
+        });
+    }
 
 })();

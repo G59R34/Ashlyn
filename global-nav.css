@@ -1,0 +1,80 @@
+/* Global site nav — styled to match main site `navbar` */
+.site-nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10,14,39,0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+}
+
+.site-nav .nav-inner{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-nav .brand{
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--accent-gold, #d4af37);
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.site-nav .nav-links{
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.site-nav a{
+  color: var(--text-light, #fff);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.site-nav a::after{
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #d4af37 0%, #f4e5a0 100%);
+  transition: width 0.3s ease;
+}
+
+.site-nav a:hover{ color: var(--accent-gold, #d4af37); }
+.site-nav a:hover::after{ width: 100%; }
+
+.site-nav a.nav-cta{
+  padding: 0.8rem 1.4rem;
+  background: linear-gradient(135deg, #d4af37 0%, #f4e5a0 100%);
+  color: var(--primary-dark, #0a0e27);
+  font-weight: 700;
+}
+
+/* Page transition fade handled by JS class */
+html.page-exit, body.page-exit{ opacity:0; transition: opacity 260ms ease; }
+
+@media (max-width:720px){
+  .site-nav .nav-links{ gap:12px; }
+  .site-nav .brand{ font-size:0.95rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html.page-exit, body.page-exit{ transition:none; }
+}
