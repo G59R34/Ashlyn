@@ -1,5 +1,5 @@
 // ============================================
-// ASHLYN RYANN VALENCIA - CORPORATE EXCELLENCE
+// ASHLYN DIET COKE - CORPORATE EXCELLENCE
 // Premium Corporate Website JavaScript
 // ============================================
 
